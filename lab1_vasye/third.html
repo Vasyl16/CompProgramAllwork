@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Обробка подій форми</title>
+  </head>
+  <body>
+    <h1>Обробка подій форми</h1>
+    <form>
+      <label for="input1">Елемент 1:</label>
+      <input
+        type="text"
+        id="input1"
+        onchange="showMessageOnChange(this)"
+        onfocus="showMessageOnFocus(this)"
+      />
+      <br />
+      <label for="input2">Елемент 2:</label>
+      <input
+        type="text"
+        id="input2"
+        onchange="showMessageOnChange(this)"
+        onfocus="showMessageOnFocus(this)"
+      />
+    </form>
+
+    <script>
+      function showMessageOnChange(inputElement) {
+        const value = inputElement.value;
+        const inputId = inputElement.id;
+
+        if (inputId === "input1") {
+          console.log("Змінено значення в елементі 1");
+        } else {
+          console.log("Змінено значення в елементі 2");
+        }
+      }
+
+      let focusTimeout;
+      function showMessageOnFocus(inputElement) {
+        const inputId = inputElement.id;
+
+        if (inputId === "input1") {
+          console.log("Елемент 1 набув фокусу.");
+        } else {
+          console.log("Елемент 2 набув фокусу.");
+        }
+      }
+    </script>
+  </body>
+</html>

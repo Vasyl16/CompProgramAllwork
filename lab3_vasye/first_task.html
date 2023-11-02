@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Калькулятор прямокутника</title>
+  </head>
+  <body>
+    <h1>Калькулятор прямокутника</h1>
+    <form id="rectangleForm">
+      <label for="width">Ширина: </label>
+      <input type="number" id="width" name="width" required />
+      <br /><br />
+      <label for="length">Довжина: </label>
+      <input type="number" id="length" name="length" required />
+    </form>
+    <div id="result">
+      <h2>Результат:</h2>
+      <p id="perimeter">Периметр:</p>
+      <p id="diagonal">Діагональ:</p>
+    </div>
+
+    <script>
+      const widthInput = document.getElementById("width");
+      const lengthInput = document.getElementById("length");
+
+      widthInput.addEventListener("input", calculateRectangle);
+      lengthInput.addEventListener("input", calculateRectangle);
+
+      function calculateRectangle() {
+        const width = parseFloat(widthInput.value);
+        const length = parseFloat(lengthInput.value);
+
+        if (!isNaN(width) && !isNaN(length)) {
+          const perimeter = 2 * (width + length);
+          const diagonal = Math.sqrt(Math.pow(width, 2) + Math.pow(length, 2));
+
+          document.getElementById("perimeter").textContent =
+            "Периметр: " + perimeter;
+          document.getElementById("diagonal").textContent =
+            "Діагональ: " + diagonal;
+        }
+      }
+    </script>
+  </body>
+</html>

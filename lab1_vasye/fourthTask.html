@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Розгалужений обчислювальний процес</title>
+  </head>
+  <body>
+    <h1>Обчислення за розгалуженим процесом</h1>
+    <form id="calculationForm">
+      <label for="x">Введіть значення x:</label>
+      <input type="number" id="x" step="0.01" />
+      <br />
+      <label for="y">Введіть значення y:</label>
+      <input type="number" id="y" step="0.01" />
+      <br />
+      <button id="calculateButton">Обчислити</button>
+    </form>
+
+    <p id="result"></p>
+
+    <script>
+      document
+        .getElementById("calculateButton")
+        .addEventListener("click", function (event) {
+          event.preventDefault(); // Зупиняємо дію за замовчуванням (відправку форми)
+
+          const x = parseFloat(document.getElementById("x").value);
+          const y = parseFloat(document.getElementById("y").value);
+          let result;
+
+          if (x !== 0) {
+            if (x / y) {
+              result = `Результат для x/y, x != 0: ${x / y}`;
+            } else if (x != 0 || y > 3 / 2) {
+              result = `Результат для 2x/y, (x != 0) or (y > 3/2): ${
+                (2 * x) / y
+              }`;
+            } else {
+              result = `Результат для -(x*x*x) + 2 * y * y: ${
+                -(x * x * x) + 2 * y * y
+              }`;
+            }
+          } else {
+            result = "Значення x не може бути 0.";
+          }
+
+          const resultElement = document.getElementById("result");
+          resultElement.textContent = result;
+        });
+    </script>
+  </body>
+</html>

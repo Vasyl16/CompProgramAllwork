@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Розрахунок арифметичної операції</title>
+  </head>
+  <body>
+    <h1>Розрахунок арифметичної операції</h1>
+    <button id="calculateButton">Розрахувати</button>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const calculateButton = document.getElementById("calculateButton");
+
+        calculateButton.addEventListener("click", function () {
+          // Вираховуємо значення функції для заданих x і z
+          const x = 5; // Ваше значення x
+          const z = 2; // Ваше значення z
+
+          const result = -3 * x * z + Math.pow(x, 1.5);
+
+          // Виводимо результат на екран
+          alert(`Результат розрахунку: ${result}`);
+        });
+      });
+    </script>
+  </body>
+</html>

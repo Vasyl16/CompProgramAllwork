@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Таблиця та обчислення</title>
+  </head>
+  <body>
+    <label for="rowCount">Кількість рядків:</label>
+    <input type="number" id="rowCount" value="5" /><br />
+
+    <label for="colCount">Кількість стовпців:</label>
+    <input type="number" id="colCount" value="5" /><br />
+
+    <button onclick="createTableAndCalculate()">
+      Створити таблицю та обчислити
+    </button>
+
+    <table id="dataTable" border="1"></table>
+
+    <div id="result"></div>
+
+    <script>
+      function createTableAndCalculate() {
+        const rowCount = parseInt(document.getElementById("rowCount").value);
+        const colCount = parseInt(document.getElementById("colCount").value);
+
+        // Створення таблиці та заповнення її даними
+        const table = document.getElementById("dataTable");
+        let data = [];
+        for (let i = 1; i <= rowCount; i++) {
+          const row = [];
+          const tr = document.createElement("tr");
+          for (let j = 1; j <= colCount; j++) {
+            const value = i - j;
+            row.push(value);
+            const td = document.createElement("td");
+            td.textContent = value;
+            tr.appendChild(td);
+          }
+          data.push(row);
+          table.appendChild(tr);
+        }
+
+        // Підрахунок результатів
+        let result = 0;
+        const operationType = (rowCount % 5) + 1; // Операція залежить від номеру рядка
+
+        if (operationType === 1) {
+          // Сума всіх елементів для 1, 6, 11, 16, 21, 26
+          result = data.flat().reduce((acc, curr) => acc + curr, 0);
+        } else if (operationType === 2) {
+          // Сума другого рядка для 2, 7, 12, 17, 22, 27
+          result = data[1].reduce((acc, curr) => acc + curr, 0);
+        } else if (operationType === 3) {
+          // Сума третього стовпця для 3, 8, 13, 18, 23, 28
+          result = data
+            .map((row) => row[2])
+            .reduce((acc, curr) => acc + curr, 0);
+        } else if (operationType === 4) {
+          // Сума елементів, де номер строки і стовпця збігаються
+          result = data.reduce((acc, row, i) => acc + row[i], 0);
+        } else if (operationType === 5) {
+          // Добуток елементів останнього стовпця
+          result = data
+            .map((row) => row[colCount - 1])
+            .reduce((acc, curr) => acc * curr, 1);
+        }
+
+        document.getElementById("result").textContent = `Результат: ${result}`;
+      }
+    </script>
+  </body>
+</html>

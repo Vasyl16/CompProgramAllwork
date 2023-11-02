@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vertical Menu with Nested Popups and Icons</title>
+    <style>
+      /* CSS for the vertical menu */
+      .menu {
+        list-style: none;
+        padding: 0;
+      }
+      .menu > li {
+        margin: 10px 0;
+      }
+      .menu-link {
+        text-decoration: none;
+        color: #333;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      }
+      .popup {
+        display: none;
+        position: absolute;
+        background-color: #f0f0f0;
+        padding: 10px;
+        z-index: 1;
+      }
+      .menu-link:hover {
+        background-color: #f0f0f0;
+      }
+      .icon {
+        margin-left: 5px;
+      }
+      .icon.open:after {
+        content: '▼';
+        margin-left: 5px;
+      }
+      .icon.closed:after {
+        content: '►';
+        margin-left: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Vertical Menu with Nested Popups and Icons</h1>
+    <ul class="menu">
+      <li>
+        <a class="menu-link" onclick="togglePopup('popup1')"
+          >Menu Item 1<span class="icon closed"></span
+        ></a>
+        <div class="popup" id="popup1">
+          <p>Popup for Menu Item 1</p>
+          <a class="menu-link" onclick="togglePopup('popup1-1')"
+            >Open Nested Popup<span class="icon closed"></span
+          ></a>
+          <div class="popup" id="popup1-1">
+            <p>Nested Popup 1</p>
+          </div>
+        </div>
+      </li>
+      <li>
+        <a class="menu-link" onclick="togglePopup('popup2')"
+          >Menu Item 2<span class="icon closed"></span
+        ></a>
+        <div class="popup" id="popup2">
+          <p>Popup for Menu Item 2</p>
+        </div>
+      </li>
+      <li>
+        <a class="menu-link" onclick="togglePopup('popup3')"
+          >Menu Item 3<span class="icon closed"></span
+        ></a>
+        <div class="popup" id="popup3">
+          <p>Popup for Menu Item 3</p>
+        </div>
+      </li>
+    </ul>
+    <script>
+      const openPopups = [];
+
+      function togglePopup(popupId) {
+        const popup = document.getElementById(popupId);
+        if (popup) {
+          const isOpen = openPopups.includes(popupId);
+          if (isOpen) {
+            openPopups.splice(openPopups.indexOf(popupId), 1);
+            popup.style.display = 'none';
+          } else {
+            openPopups.push(popupId);
+            popup.style.display = 'block';
+          }
+
+          const icons = document.querySelectorAll('.menu-link .icon');
+          icons.forEach((icon) => {
+            const parentId = icon.parentElement
+              .getAttribute('onclick')
+              .replace("togglePopup('", '')
+              .replace("')", '');
+            if (openPopups.includes(parentId)) {
+              icon.classList.remove('closed');
+              icon.classList.add('open');
+            } else {
+              icon.classList.remove('open');
+              icon.classList.add('closed');
+            }
+          });
+        }
+      }
+
+      window.onclick = function (event) {
+        if (event.target.classList.contains('popup')) {
+          event.target.style.display = 'none';
+          const popupId = event.target.id;
+          const index = openPopups.indexOf(popupId);
+          if (index !== -1) {
+            openPopups.splice(index, 1);
+          }
+          togglePopup(popupId);
+        }
+      };
+    </script>
+  </body>
+</html>

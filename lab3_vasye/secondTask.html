@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Екранна клавіатура</title>
+    <style>
+      .keyboard {
+        display: grid;
+        grid-template-columns: repeat(10, 40px);
+        grid-gap: 5px;
+      }
+
+      .keyboard button {
+        width: 40px;
+        height: 40px;
+      }
+
+      #inputField {
+        width: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Екранна клавіатура</h1>
+
+    <div class="keyboard" id="keyboard"></div>
+    <button id="clearButton">Очистити поле</button>
+    <br /><br />
+    <input type="text" id="inputField" placeholder="Текст" />
+
+    <script>
+      const alphabet = ["а", "б", "в", "г", "д", "е", "є", "и", "і", "ї"];
+      const keyboard = document.getElementById("keyboard");
+      const inputField = document.getElementById("inputField");
+      const clearButton = document.getElementById("clearButton");
+
+      // Додавання кнопок літер на клавіатуру
+      alphabet.forEach((letter) => {
+        const button = document.createElement("button");
+        button.textContent = letter;
+        button.addEventListener("click", () => {
+          inputField.value += letter;
+        });
+        keyboard.appendChild(button);
+      });
+
+      // Обробник кнопки "Очистити поле"
+      clearButton.addEventListener("click", () => {
+        inputField.value = "";
+      });
+    </script>
+  </body>
+</html>

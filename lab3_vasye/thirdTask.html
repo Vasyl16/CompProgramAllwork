@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Екранна клавіатура</title>
+    <style>
+      .keyboard {
+        display: grid;
+        grid-template-columns: repeat(11, 40px);
+        grid-gap: 5px;
+      }
+
+      .keyboard button {
+        width: 40px;
+        height: 40px;
+      }
+
+      #inputField {
+        width: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Екранна клавіатура</h1>
+
+    <div class="keyboard" id="keyboard"></div>
+    <button id="clearButton">Очистити поле</button>
+    <button id="switchLayout">Alt+Shift</button>
+    <br /><br />
+    <input type="text" id="inputField" placeholder="Текст" />
+
+    <script>
+      const ukrainianAlphabet = [
+        'а',
+        'б',
+        'в',
+        'г',
+        'д',
+        'е',
+        'є',
+        'и',
+        'і',
+        'ї',
+        '1',
+        '2',
+        '3',
+        '!',
+        '@',
+        '#',
+        '$',
+        '%',
+      ];
+      const englishAlphabet = [
+        'a',
+        'b',
+        'c',
+        'd',
+        'e',
+        'f',
+        'g',
+        'h',
+        'i',
+        'j',
+        '1',
+        '2',
+        '3',
+        '!',
+        '@',
+        '#',
+        '$',
+        '%',
+      ];
+      let isUkrainianLayout = true;
+
+      const keyboard = document.getElementById('keyboard');
+      const inputField = document.getElementById('inputField');
+      const clearButton = document.getElementById('clearButton');
+      const switchLayoutButton = document.getElementById('switchLayout');
+
+      function updateLayout() {
+        keyboard.innerHTML = '';
+
+        const currentLayout = isUkrainianLayout
+          ? ukrainianAlphabet
+          : englishAlphabet;
+        currentLayout.forEach((letter) => {
+          const button = document.createElement('button');
+          button.textContent = letter;
+          button.addEventListener('click', () => {
+            inputField.value += letter;
+          });
+          keyboard.appendChild(button);
+        });
+      }
+
+      // Перемикання розкладки при натисканні кнопки "Alt+Shift"
+      switchLayoutButton.addEventListener('click', () => {
+        isUkrainianLayout = !isUkrainianLayout;
+        updateLayout();
+      });
+
+      // Додавання кнопок літер на клавіатуру
+      updateLayout();
+
+      // Обробник кнопки "Очистити поле"
+      clearButton.addEventListener('click', () => {
+        inputField.value = '';
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Інформація про студента</title>
+  </head>
+  <body>
+    <h1>Інформація про студента</h1>
+    <p>Прізвище: <span id="lastname">Петров</span></p>
+    <p>Ім'я: <span id="firstname">Іван</span></p>
+    <p>По батькові: <span id="middlename">Олександрович</span></p>
+    <button id="showInfoButton">Показати інформацію</button>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const showInfoButton = document.getElementById("showInfoButton");
+        const lastname = document.getElementById("lastname").textContent;
+        const firstname = document.getElementById("firstname").textContent;
+        const middlename = document.getElementById("middlename").textContent;
+
+        showInfoButton.addEventListener("click", function () {
+          // Ваші дані про дату та місце народження студента
+          const dateOfBirth = "01.01.2000";
+          const placeOfBirth = "Місто, Країна";
+
+          // Виведення інформації у спливаючому вікні
+          alert(
+            `Дата народження: ${dateOfBirth}\nМісце народження: ${placeOfBirth}`
+          );
+        });
+      });
+    </script>
+  </body>
+</html>

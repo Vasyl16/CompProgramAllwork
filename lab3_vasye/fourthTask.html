@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Перегляд зображень</title>
+  </head>
+  <body>
+    <h1>Перегляд зображень</h1>
+
+    <button id="prevButton">Назад</button>
+    <img id="imageDisplay" src="" alt="Зображення" />
+    <button id="nextButton">Вперед</button>
+
+    <script>
+      const imageFiles = [
+        "https://cdn.pixabay.com/photo/2015/01/27/18/32/bananas-614090_640.jpg",
+        "https://cdn.pixabay.com/photo/2015/02/27/17/58/bananas-652497_640.jpg",
+        "https://cdn.pixabay.com/photo/2015/01/27/18/32/bananas-614090_640.jpg",
+      ];
+      let currentIndex = 0;
+
+      const prevButton = document.getElementById("prevButton");
+      const nextButton = document.getElementById("nextButton");
+      const imageDisplay = document.getElementById("imageDisplay");
+
+      function showImage(index) {
+        if (index < 0) {
+          index = imageFiles.length - 1;
+        } else if (index >= imageFiles.length) {
+          index = 0;
+        }
+
+        const imageUrl = imageFiles[index];
+        imageDisplay.src = imageUrl;
+        currentIndex = index;
+      }
+
+      prevButton.addEventListener("click", () => {
+        showImage(currentIndex - 1);
+      });
+
+      nextButton.addEventListener("click", () => {
+        showImage(currentIndex + 1);
+      });
+
+      // Показати перше зображення при завантаженні сторінки
+      showImage(currentIndex);
+    </script>
+  </body>
+</html>

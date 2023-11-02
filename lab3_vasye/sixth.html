@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Дерево ієрархії</title>
+    <style>
+      .folder {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="tree">
+      <li class="folder">
+        Фрукти
+        <ul>
+          <li>Яблуко</li>
+          <li>Ананас</li>
+          <li>Абрикос</li>
+          <li>Груша</li>
+          <li>Лимон</li>
+        </ul>
+      </li>
+      <li class="folder">
+        Овочі
+        <ul>
+          <li>Картопля</li>
+          <li>Буряк</li>
+          <li>Морква</li>
+        </ul>
+      </li>
+    </ul>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const folders = document.querySelectorAll(".folder");
+
+        folders.forEach((folder) => {
+          folder.addEventListener("click", function () {
+            const ul = this.querySelector("ul");
+            ul.style.display = ul.style.display === "none" ? "block" : "none";
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Густина населення та площа континентів</title>
+  </head>
+  <body>
+    <h1>Розрахунок густини населення та площі континентів</h1>
+
+    <label for="continentInput">Введіть назву континенту:</label>
+    <input type="text" id="continentInput" />
+    <button id="calculateDensityAreaButton">Густина і площа</button>
+    <button id="calculatePopulationButton">Населення</button>
+
+    <p>
+      Густина населення: <span id="populationDensityResult"></span> осіб/км²
+    </p>
+    <p>Площа: <span id="areaResult"></span> км²</p>
+    <p>Населення: <span id="populationResult"></span> осіб</p>
+
+    <script>
+      const continents = [
+        "Азія",
+        "Африка",
+        "Північна Америка",
+        "Південна Америка",
+        "Європа",
+        "Австралія",
+        "Антарктида",
+      ];
+      const populationDensities = [150, 40, 22, 25, 73, 3, 0.00008]; // Густина населення, осіб/км²
+      const areas = [44.58, 30.37, 24.71, 17.84, 10.18, 7.69, 14.0]; // Площа, тис. км²
+
+      document
+        .getElementById("calculateDensityAreaButton")
+        .addEventListener("click", function () {
+          const continentInput =
+            document.getElementById("continentInput").value;
+          const index = continents.indexOf(continentInput);
+
+          if (index !== -1) {
+            const populationDensityResult = populationDensities[index];
+            const areaResult = areas[index];
+            document.getElementById("populationDensityResult").textContent =
+              populationDensityResult;
+            document.getElementById("areaResult").textContent = areaResult;
+          } else {
+            alert("Континент не знайдено.");
+          }
+        });
+
+      document
+        .getElementById("calculatePopulationButton")
+        .addEventListener("click", function () {
+          const populationDensity = parseFloat(
+            document.getElementById("populationDensityResult").textContent
+          );
+          const area = parseFloat(
+            document.getElementById("areaResult").textContent
+          );
+
+          if (!isNaN(populationDensity) && !isNaN(area)) {
+            const populationResult = populationDensity * area * 1000; // переводимо площу з тис. км² в км²
+            document.getElementById("populationResult").textContent =
+              populationResult;
+          } else {
+            alert("Спочатку виконайте розрахунок густини населення та площі.");
+          }
+        });
+    </script>
+  </body>
+</html>

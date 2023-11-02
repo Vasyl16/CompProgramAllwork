@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tabbed Menu</title>
+    <style>
+      /* CSS for the tabbed menu */
+      .tab-container {
+        display: flex;
+      }
+      .tab-button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+        border: none;
+        outline: none;
+      }
+      .tab-button:hover {
+        background-color: #0056b3;
+      }
+      .tab-content {
+        display: none;
+        padding: 20px;
+        border: 1px solid #007bff;
+      }
+      .tab-content.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Tabbed Menu</h1>
+    <div class="tab-container">
+      <button class="tab-button" onclick="openTab(event, 'tab1')">Tab 1</button>
+      <button class="tab-button" onclick="openTab(event, 'tab2')">Tab 2</button>
+      <button class="tab-button" onclick="openTab(event, 'tab3')">Tab 3</button>
+    </div>
+    <div id="tab1" class="tab-content active">
+      <h2>Tab 1 Content</h2>
+      <p>This is the content for Tab 1.</p>
+    </div>
+    <div id="tab2" class="tab-content">
+      <h2>Tab 2 Content</h2>
+      <p>This is the content for Tab 2.</p>
+    </div>
+    <div id="tab3" class="tab-content">
+      <h2>Tab 3 Content</h2>
+      <p>This is the content for Tab 3.</p>
+    </div>
+    <script>
+      // JavaScript for the tabbed menu
+      function openTab(evt, tabName) {
+        var i, tabContent, tabButton;
+
+        tabContent = document.getElementsByClassName('tab-content');
+        for (i = 0; i < tabContent.length; i++) {
+          tabContent[i].style.display = 'none';
+        }
+
+        tabButton = document.getElementsByClassName('tab-button');
+        for (i = 0; i < tabButton.length; i++) {
+          tabButton[i].classList.remove('active');
+        }
+
+        document.getElementById(tabName).style.display = 'block';
+        evt.currentTarget.classList.add('active');
+      }
+      // Set the initial tab to be displayed
+      openTab(event, 'tab1');
+    </script>
+  </body>
+</html>
