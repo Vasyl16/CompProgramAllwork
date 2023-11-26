@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation</title>
+    <style>
+      .error {
+        color: red;
+        border: 2px double red;
+      }
+
+      .valid {
+        content: url('path-to-check-mark-image.png'); /* Додайте шлях до зображення галочки */
+      }
+    </style>
+  </head>
+  <body>
+    <form id="registrationForm">
+      <label for="email">Електронна пошта:</label>
+      <input type="text" id="email" name="email" required />
+
+      <label for="fullName">Ім'я та прізвище:</label>
+      <input type="text" id="fullName" name="fullName" required />
+
+      <label for="login">Логін:</label>
+      <input type="text" id="login" name="login" required />
+
+      <label for="password">Пароль:</label>
+      <input type="password" id="password" name="password" required />
+
+      <label for="postalCode">Поштовий індекс:</label>
+      <input type="text" id="postalCode" name="postalCode" required />
+
+      <button type="button" onclick="validateForm()">Відправити</button>
+    </form>
+
+    <script>
+      function validateForm() {
+        const form = document.getElementById('registrationForm');
+        const email = form.elements['email'].value;
+        const fullName = form.elements['fullName'].value;
+        const login = form.elements['login'].value;
+        const password = form.elements['password'].value;
+        const postalCode = form.elements['postalCode'].value;
+
+        const emailRegex = /^.+@pnu\.edu\.ua$/;
+        const nameRegex = /^[A-Za-zА-Яа-яЁё]+\s[A-Za-zА-Яа-яЁё]+$/;
+        const loginRegex = /^[a-zA-Z]+$/;
+        const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[-_!@#$%^&*]).{8,}$/;
+        const postalCodeRegex = /^\d{5}$/;
+
+        const errors = {};
+
+        if (!emailRegex.test(email)) {
+          errors.email = 'Неправильний формат електронної пошти';
+        }
+
+        if (!nameRegex.test(fullName)) {
+          errors.fullName = 'Неправильний формат імені та прізвища';
+        }
+
+        if (!loginRegex.test(login)) {
+          errors.login = 'Неправильний формат логіну';
+        }
+
+        if (!passwordRegex.test(password)) {
+          errors.password = 'Неправильний формат пароля';
+        }
+
+        if (!postalCodeRegex.test(postalCode)) {
+          errors.postalCode = 'Неправильний формат поштового індексу';
+        }
+
+        // Очистити попередні помилки
+        const inputElements = form.querySelectorAll('input');
+        inputElements.forEach((inputElement) => {
+          inputElement.classList.remove('error', 'valid');
+          inputElement.removeAttribute('title');
+        });
+
+        // Відобразити нові помилки
+        for (const fieldName in errors) {
+          if (errors.hasOwnProperty(fieldName)) {
+            const inputElement = form.elements[fieldName];
+            inputElement.classList.add('error');
+            inputElement.setAttribute('title', errors[fieldName]);
+          }
+        }
+
+        // Відобразити правильні дані
+        const validInputs = form.querySelectorAll('input:not(.error)');
+        for (const validInput of validInputs) {
+          validInput.classList.add('valid');
+        }
+      }
+    </script>
+  </body>
+</html>

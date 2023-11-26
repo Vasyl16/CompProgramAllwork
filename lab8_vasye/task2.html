@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 2</title>
+  </head>
+  <body>
+    <!-- Завдання 2.1 -->
+    <button onclick="displayCurrentDate()">
+      Завдання 2.1. Виведення поточної дати, дня тижня і часу
+    </button>
+    <p id="output1"></p>
+
+    <!-- Завдання 2.2 -->
+    <button onclick="displayDayInfo()">
+      Завдання 2.2. Виведення дня і номера тижня
+    </button>
+    <p id="output2"></p>
+
+    <script>
+      // Завдання 2.1
+      function displayCurrentDate() {
+        const currentDate = new Date();
+        const options = {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          weekday: 'long',
+          hour: 'numeric',
+          minute: 'numeric',
+        };
+        const formattedDate = currentDate.toLocaleDateString('uk-UA', options);
+
+        document.getElementById('output1').innerText = formattedDate;
+      }
+
+      // Завдання 2.2
+      function getDayInfo(date) {
+        const dayNumber = date.getDay() === 0 ? 7 : date.getDay();
+        const dayName = [
+          'понеділок',
+          'вівторок',
+          'середа',
+          'четвер',
+          'пʼятниця',
+          'субота',
+          'неділя',
+        ][dayNumber - 1];
+
+        return { dayNumber, dayName };
+      }
+
+      function displayDayInfo() {
+        const currentDate = new Date();
+        const dayInfo = getDayInfo(currentDate);
+
+        document.getElementById(
+          'output2'
+        ).innerText = `Номер тижня: ${dayInfo.dayNumber}\nНазва дня тижня: ${dayInfo.dayName}`;
+      }
+    </script>
+  </body>
+</html>

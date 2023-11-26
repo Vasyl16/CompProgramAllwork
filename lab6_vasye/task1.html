@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Email Validation</title>
+  </head>
+  <body>
+    <script>
+      let s = 'dwbyu@mail.ua';
+      let r = /^([a-z0-9]+)(\.[a-z0-9]+)*@([a-z0-9]+)(\.[a-z0-9]+)*$/i;
+      let matchArray = s.match(r);
+
+      if (matchArray !== null) {
+        document.writeln('<p>Email is valid:</p>');
+
+        for (let i = 0; i < matchArray.length; i++) {
+          document.writeln(
+            '<p>a[' + i + '] ' + (matchArray[i] || 'undefined') + '</p>'
+          );
+        }
+      } else {
+        document.writeln('<p>Email is not valid</p>');
+      }
+    </script>
+  </body>
+</html>
