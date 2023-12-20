@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    ></script>
+    <script>
+      $(document).ready(function () {
+        // Створення нового елемента
+        var newElement = $('<div>').text('Новий елемент');
+
+        // Додавання нового елемента перед існуючим елементом
+        newElement.insertBefore('#existingElement');
+
+        // Демонстрація використання методу .detach()
+        $('#detachButton').click(function () {
+          // Відділення елемента
+          var detachedElement = $('#existingElement').detach();
+
+          // Показ елемента в іншому місці
+          $('#detachedContainer').append(detachedElement);
+        });
+
+        // Виведення висоти вмісту елемента
+        $('#innerHeightButton').click(function () {
+          var innerHeightValue = $('#existingElement').innerHeight();
+          alert('Висота вмісту елемента: ' + innerHeightValue + 'px');
+        });
+
+        // Виведення повної висоти елемента (з врахуванням padding, border, та margin)
+        $('#outerHeightButton').click(function () {
+          var outerHeightValue = $('#existingElement').outerHeight(true);
+          alert('Повна висота елемента: ' + outerHeightValue + 'px');
+        });
+      });
+    </script>
+    <style>
+      #existingElement {
+        padding: 10px;
+        border: 2px solid #333;
+        margin: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>jQuery Методи Демо</h1>
+
+    <div id="existingElement">Існуючий елемент</div>
+
+    <button id="detachButton">Демо .detach()</button>
+    <button id="innerHeightButton">Демо .innerHeight()</button>
+    <button id="outerHeightButton">Демо .outerHeight()</button>
+
+    <div id="detachedContainer">Контейнер для відділеного елемента</div>
+  </body>
+</html>

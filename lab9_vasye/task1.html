@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      /* Стилі для анімації */
+      img {
+        position: absolute;
+        transition: transform 0.5s ease-in-out;
+        cursor: pointer;
+      }
+    </style>
+    <title>Анімація переміщення</title>
+  </head>
+  <body>
+    <!-- Фото, на яке клікатимуть -->
+    <img
+      id="movingImage"
+      src="https://seeklogo.com/images/S/scratch-cat-logo-7F652C6253-seeklogo.com.png
+"
+      alt="Фото"
+      onclick="moveImage()"
+    />
+
+    <script>
+      // JavaScript для анімації
+      function moveImage() {
+        // Отримати розміри екрану
+        var screenWidth = window.innerWidth;
+        var screenHeight = window.innerHeight;
+
+        // Отримати рандомні координати для переміщення
+        var randomX = Math.floor(Math.random() * (screenWidth - 100)); // Від 0 до (ширина екрану - 100)
+        var randomY = Math.floor(Math.random() * (screenHeight - 100)); // Від 0 до (висота екрану - 100)
+
+        // Змінити позицію фото
+        var movingImage = document.getElementById('movingImage');
+        movingImage.style.transform =
+          'translate(' + randomX + 'px, ' + randomY + 'px)';
+      }
+    </script>
+  </body>
+</html>

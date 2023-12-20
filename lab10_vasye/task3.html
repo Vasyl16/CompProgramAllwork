@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    ></script>
+    <script>
+      $(document).ready(function () {
+        var $text = $('#hide_text'); // присвоюємо змінній text блок з id = hide_text
+        $text.hide(); // приховуємо отриманий блок
+
+        // Додаємо два повідомлення у перший і останній абзаци
+        $('p:first').text('DOM first!');
+        $('p:last').text('DOM last!');
+
+        // Додаємо стиль при наведенні миші на div
+        $text.hover(
+          function () {
+            $(this).addClass('hovered'); // додаємо клас "hovered" при наведенні
+          },
+          function () {
+            $(this).removeClass('hovered'); // видаляємо клас "hovered" при знятті наведення
+          }
+        );
+
+        // Додаємо стилі при одинарному та подвійному кліках
+        $text.bind('click', function () {
+          $(this).addClass('clicked');
+        });
+
+        $text.bind('dblclick', function () {
+          $(this).removeClass('clicked');
+        });
+
+        // Додаємо обробник кліку та подвійного кліку для кнопок
+        $('#singleClickButton').click(function () {
+          alert('Одинарний клік');
+        });
+
+        $('#doubleClickButton').dblclick(function () {
+          alert('Подвійний клік');
+        });
+
+        // Додаємо обробник кліку для показу зображення
+        $('#showImage').click(function () {
+          $('#image').show();
+        });
+
+        // Додаємо обробник кліку для приховування зображення
+        $('#image').click(function () {
+          $(this).hide();
+        });
+      });
+    </script>
+    <style>
+      /* Стиль для прихованого div при наведенні */
+      #hide_text.hovered {
+        background-color: lightblue;
+      }
+
+      /* Стиль для div при одинарному кліку */
+      #hide_text.clicked {
+        border: 2px solid red;
+        background-color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Контент сторінки</h1>
+    <a href="#" class="button"> Натисніть, щоб показати текст </a>
+    <div id="hide_text">Демонстраційний прихований текст</div>
+    <p></p>
+    <!-- Перший абзац для виведення "DOM first!" -->
+    <p></p>
+    <!-- Останній абзац для виведення "DOM last!" -->
+
+    <!-- Кнопки для подій "Одинарний клік" та "Подвійний клік" -->
+    <button id="singleClickButton">Одинарний клік</button>
+    <button id="doubleClickButton">Подвійний клік</button>
+
+    <!-- Надпис для показу зображення -->
+    <p id="showImage">Показати зображення</p>
+
+    <!-- Зображення для показу/приховування -->
+    <img
+      id="image"
+      src="https://via.placeholder.com/150"
+      alt="Sample Image"
+      style="display: none"
+    />
+  </body>
+</html>

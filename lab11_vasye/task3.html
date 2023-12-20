@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    ></script>
+    <style>
+      #offsetParentItem {
+        position: relative; /* Set a non-static position */
+      }
+    </style>
+    <script>
+      $(document).ready(function () {
+        // Метод .each()
+        $('#eachButton').click(function () {
+          $('li').each(function (index, element) {
+            alert('Елемент ' + index + ': ' + $(element).text());
+          });
+        });
+
+        // Метод .nextAll()
+        $('#nextAllButton').click(function () {
+          $('#secondItem').nextAll().css('color', 'blue');
+        });
+
+        // Метод .siblings()
+        $('#siblingsButton').click(function () {
+          $('#thirdItem').siblings().css('font-weight', 'bold');
+        });
+
+        // Метод .find()
+        $('#findButton').click(function () {
+          $('#nestedList').find('li').css('background-color', 'yellow');
+        });
+
+        // Метод .offsetParent()
+        $('#offsetParentButton').click(function () {
+          var offsetParent = $('#offsetParentItem').offsetParent().attr('id');
+          alert('Offset Parent ID: ' + (offsetParent || 'undefined'));
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>jQuery Методи Демо</h1>
+
+    <ul>
+      <li>Перший елемент</li>
+      <li id="secondItem">Другий елемент</li>
+      <li id="thirdItem">Третій елемент</li>
+    </ul>
+
+    <div id="nestedList">
+      <ul>
+        <li>Вкладений елемент 1</li>
+        <li>Вкладений елемент 2</li>
+      </ul>
+    </div>
+
+    <div id="offsetParentItem">Елемент із власним offsetParent</div>
+
+    <button id="eachButton">Демо .each()</button>
+    <button id="nextAllButton">Демо .nextAll()</button>
+    <button id="siblingsButton">Демо .siblings()</button>
+    <button id="findButton">Демо .find()</button>
+    <button id="offsetParentButton">Демо .offsetParent()</button>
+  </body>
+</html>

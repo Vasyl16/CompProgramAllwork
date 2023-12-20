@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      #animatedElement {
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="animatedElement"></div>
+
+    <script>
+      // Отримуємо елемент, який буде анімований
+      const animatedElement = document.getElementById('animatedElement');
+
+      // Параметри анімації
+      const animationProperties = {
+        opacity: [1, 0.5], // Зміна прозорості від 1 до 0.5
+        transform: ['scale(1)', 'scale(1.5)'], // Збільшення в розмірах
+        backgroundColor: ['blue', 'red'], // Зміна кольору фону від синього до червоного
+      };
+
+      const animationOptions = {
+        duration: 2000, // Тривалість анімації у мілісекундах
+        easing: 'ease-out', // Тип анімації (згладжений вихід)
+        complete: () => {
+          console.log('Анімація завершена!');
+        },
+      };
+
+      // Запускаємо анімацію
+      animatedElement.animate(animationProperties, animationOptions);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    ></script>
+    <script>
+      $(document).ready(function () {
+        var $text = $('#hide_text'); // присвоюємо змінній text блок з id = hide_text
+        $text.hide(); // приховуємо отриманий блок
+
+        // Додаємо два повідомлення у перший і останній абзаци
+        $('p:first').text('DOM first!');
+        $('p:last').text('DOM last!');
+
+        // Додаємо стиль при наведенні миші на div
+        $text.hover(
+          function () {
+            $(this).addClass('hovered'); // додаємо клас "hovered" при наведенні
+          },
+          function () {
+            $(this).removeClass('hovered'); // видаляємо клас "hovered" при знятті наведення
+          }
+        );
+
+        $('.button').click(function () {
+          // при кліці на HTML елемент з класом button
+          $text.show(200); // показуємо прихований блок із затримкою 200 мілісекунд
+        });
+      });
+    </script>
+    <style>
+      /* Стиль для прихованого div при наведенні */
+      #hide_text.hovered {
+        background-color: lightblue;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Контент сторінки</h1>
+    <a href="#" class="button"> Натисніть, щоб показати текст </a>
+    <div id="hide_text">Демонстраційний прихований текст</div>
+    <p></p>
+    <!-- Перший абзац для виведення "DOM first!" -->
+    <p></p>
+    <!-- Останній абзац для виведення "DOM last!" -->
+  </body>
+</html>

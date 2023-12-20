@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    ></script>
+    <script>
+      $(document).ready(function () {
+        // Виклик методу .html()
+        $('#demoHtml').click(function () {
+          var htmlContent = $('#targetElement').html();
+          alert('HTML вміст елемента: ' + htmlContent);
+        });
+
+        // Виклик методу .css()
+        $('#demoCss').click(function () {
+          $('#targetElement').css('color', 'red');
+        });
+
+        // Виклик методу .val()
+        $('#demoVal').click(function () {
+          var inputVal = $('#inputElement').val();
+          alert('Значення input: ' + inputVal);
+        });
+
+        // Виклик методу .attr() та .removeAttr()
+        $('#demoAttr').click(function () {
+          // Встановлення атрибуту
+          $('#targetElement').attr('data-custom', '123');
+
+          // Отримання значення атрибуту
+          var customData = $('#targetElement').attr('data-custom');
+          alert('Значення атрибуту data-custom: ' + customData);
+
+          // Видалення атрибуту
+          $('#targetElement').removeAttr('data-custom');
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>jQuery Методи Демо</h1>
+    <button id="demoHtml">Демо .html()</button>
+    <button id="demoCss">Демо .css()</button>
+    <button id="demoVal">Демо .val()</button>
+    <button id="demoAttr">Демо .attr()</button>
+
+    <div id="targetElement">Це цільовий елемент</div>
+    <input type="text" id="inputElement" placeholder="Введіть текст" />
+  </body>
+</html>

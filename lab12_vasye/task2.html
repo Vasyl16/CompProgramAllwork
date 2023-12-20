@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    ></script>
+    <style>
+      div {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box"></div>
+    <button id="start">Start Animation</button>
+    <button id="stop">Stop Animation</button>
+
+    <script>
+      $(document).ready(function () {
+        var box = $('#box');
+
+        function animateBox() {
+          // Perform a simple leftward animation
+          box.animate({ left: '+=200' }, 1000, function () {
+            // Callback function when animation is complete
+            alert('Animation Complete');
+          });
+        }
+
+        $('#start').click(function () {
+          // Stop any ongoing animations and reset position
+          box.stop().css('left', '0');
+
+          // Start the animation
+          animateBox();
+        });
+
+        $('#stop').click(function () {
+          // Stop the ongoing animation
+          box.stop();
+        });
+      });
+    </script>
+  </body>
+</html>

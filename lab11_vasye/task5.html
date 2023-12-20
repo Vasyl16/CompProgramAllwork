@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    ></script>
+    <script>
+      $(document).ready(function () {
+        // $.contains() Example
+        var element1 = document.getElementById('parent');
+        var element2 = document.getElementById('child');
+        var containsResult = $.contains(element1, element2);
+        $('#containsResult').text('Result of $.contains(): ' + containsResult);
+
+        // $.data() Example
+        var dataElement = $('#dataElement');
+        dataElement.data('key', 'Stored Data');
+        var storedData = dataElement.data('key');
+        $('#dataResult').text('Stored Data using $.data(): ' + storedData);
+      });
+    </script>
+  </head>
+  <body>
+    <h1>jQuery Методи $.contains() та $.data() Демо</h1>
+
+    <!-- $.contains() Example -->
+    <div id="parent">
+      <div id="child">Nested Element</div>
+    </div>
+    <p id="containsResult"></p>
+
+    <!-- $.data() Example -->
+    <div id="dataElement">Element with Data</div>
+    <p id="dataResult"></p>
+  </body>
+</html>

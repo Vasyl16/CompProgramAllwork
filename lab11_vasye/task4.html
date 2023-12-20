@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    ></script>
+    <style>
+      .modifyClass {
+        color: red;
+        font-weight: bold;
+      }
+
+      /* Additional styles for demonstration */
+      li {
+        margin-bottom: 5px;
+      }
+    </style>
+    <script>
+      $(document).ready(function () {
+        // Демо .filter() для всіх елементів класу .modifyClass
+        $('#filterClassButton').click(function () {
+          $('.modifyClass').filter(':even').css('color', 'blue').text('modify');
+        });
+
+        // Демо .filter() для кожного третього елементу <li>
+        $('#filterLiButton').click(function () {
+          $('li')
+            .filter(':nth-child(3n)')
+            .css('background-color', 'yellow')
+            .text('modify');
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>jQuery Метод .filter() Демо</h1>
+
+    <ul>
+      <li class="modifyClass">Елемент 1</li>
+      <li class="modifyClass">Елемент 2</li>
+      <li class="modifyClass">Елемент 3</li>
+      <li class="modifyClass">Елемент 4</li>
+      <li class="modifyClass">Елемент 5</li>
+    </ul>
+
+    <button id="filterClassButton">Демо .filter() для класу</button>
+    <button id="filterLiButton">
+      Демо .filter() для кожного третього
+      <li></li>
+    </button>
+  </body>
+</html>

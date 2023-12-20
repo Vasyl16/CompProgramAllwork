@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    ></script>
+    <style>
+      #animatedBox {
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+        position: relative;
+      }
+    </style>
+    <script>
+      $(document).ready(function () {
+        // Animation using .animate()
+        $('#startAnimation').click(function () {
+          $('#animatedBox').animate(
+            {
+              left: '250px',
+              top: '150px',
+              opacity: 0.5,
+            },
+            {
+              duration: 2000,
+              easing: 'linear',
+              complete: function () {
+                alert('Animation Complete!');
+              },
+              step: function (now, fx) {
+                console.log(fx.prop + ': ' + now);
+              },
+            }
+          );
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>jQuery Animation with .animate()</h1>
+
+    <div id="animatedBox"></div>
+    <button id="startAnimation">Start Animation</button>
+  </body>
+</html>
